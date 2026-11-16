@@ -1,0 +1,80 @@
+[
+  {
+    "lam": 0.0,
+    "seeds": 10,
+    "test_batches_per_seed": 24,
+    "regret_two_stage": 1.507,
+    "regret_spo_plus": 1.478,
+    "paired_reduction": 0.029,
+    "seed_clustered_95ci": [
+      -0.058,
+      0.115
+    ],
+    "n_seeds_positive": 6
+  },
+  {
+    "lam": 0.03,
+    "seeds": 10,
+    "test_batches_per_seed": 24,
+    "regret_two_stage": 1.49,
+    "regret_spo_plus": 1.46,
+    "paired_reduction": 0.03,
+    "seed_clustered_95ci": [
+      -0.051,
+      0.107
+    ],
+    "n_seeds_positive": 7
+  },
+  {
+    "lam": 0.06,
+    "seeds": 10,
+    "test_batches_per_seed": 24,
+    "regret_two_stage": 1.515,
+    "regret_spo_plus": 1.503,
+    "paired_reduction": 0.012,
+    "seed_clustered_95ci": [
+      -0.072,
+      0.092
+    ],
+    "n_seeds_positive": 5
+  },
+  {
+    "lam": 0.12,
+    "seeds": 10,
+    "test_batches_per_seed": 24,
+    "regret_two_stage": 1.473,
+    "regret_spo_plus": 1.495,
+    "paired_reduction": -0.022,
+    "seed_clustered_95ci": [
+      -0.089,
+      0.039
+    ],
+    "n_seeds_positive": 3
+  },
+  {
+    "lam": 0.25,
+    "seeds": 10,
+    "test_batches_per_seed": 24,
+    "regret_two_stage": 1.502,
+    "regret_spo_plus": 1.511,
+    "paired_reduction": -0.009,
+    "seed_clustered_95ci": [
+      -0.078,
+      0.064
+    ],
+    "n_seeds_positive": 2
+  },
+  {
+    "lam": 0.5,
+    "seeds": 10,
+    "test_batches_per_seed": 24,
+    "regret_two_stage": 1.564,
+    "regret_spo_plus": 1.527,
+    "paired_reduction": 0.036,
+    "seed_clustered_95ci": [
+      -0.036,
+      0.108
+    ],
+    "n_seeds_positive": 6
+  }
+]
