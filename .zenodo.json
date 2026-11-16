@@ -1,0 +1,21 @@
+{
+  "title": "A Decision-Focused, Fairness-Constrained Framework for Multi-Horizon Graft-Rejection Prediction and Equitable Kidney Allocation",
+  "description": "Reproducibility code and seed-fixed synthetic generator for the manuscript submitted to IEEE Transactions on Artificial Intelligence. Includes multi-horizon survival models, conformal uncertainty, a decision-focused (SPO+) allocation experiment tested end-to-end against the fair, feasibility-constrained objective (with the finding that the SPO+ advantage does not survive the equity and feasibility constraints), and a NOTTO-inspired fairness benchmark, plus real-data analysis scripts for the openly licensed UCI CKD and Mendeley kidney-allograft datasets.",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "keywords": [
+    "decision-focused learning",
+    "survival analysis",
+    "organ allocation",
+    "algorithmic fairness",
+    "conformal prediction",
+    "kidney transplantation"
+  ],
+  "creators": [
+    {
+      "name": "PLACEHOLDER-Family, PLACEHOLDER-Given"
+    }
+  ],
+  "notes": "TODO before release: replace placeholder creator(s) with real name(s) and ORCID(s). Related dataset licenses: UCI CKD (open), Mendeley kidney-allograft cohort (CC BY 4.0)."
+}

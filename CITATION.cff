@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software and the associated paper."
+title: "A Decision-Focused, Fairness-Constrained Framework for Multi-Horizon Graft-Rejection Prediction and Equitable Kidney Allocation"
+# TODO before release: replace the placeholder author(s) with real names/ORCIDs.
+authors:
+  - family-names: "PLACEHOLDER-Family"
+    given-names: "PLACEHOLDER-Given"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0.0"
+date-released: "2026-11-16"
+license: MIT
+# doi: 10.5281/zenodo.XXXXXXX   # added after the Zenodo release is minted
+repository-code: "https://github.com/PLACEHOLDER-USER/kidney-allocation-dfl"
+keywords:
+  - decision-focused learning
+  - survival analysis
+  - organ allocation
+  - algorithmic fairness
+  - conformal prediction
+  - kidney transplantation
+preferred-citation:
+  type: article
+  title: "A Decision-Focused, Fairness-Constrained Framework for Multi-Horizon Graft-Rejection Prediction and Equitable Kidney Allocation"
+  authors:
+    - family-names: "PLACEHOLDER-Family"
+      given-names: "PLACEHOLDER-Given"
+  journal: "IEEE Transactions on Artificial Intelligence"
+  year: 2026
+  status: submitted
