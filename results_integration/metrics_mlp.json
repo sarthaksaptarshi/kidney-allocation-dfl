@@ -1,0 +1,51 @@
+{
+  "cells": [
+    {
+      "learner": "MLP (16 tanh)",
+      "feasibility": false,
+      "priority": false,
+      "regret_two_stage": 0.418,
+      "regret_spo_plus": 0.057,
+      "reduction": 0.361,
+      "seed_clustered_95ci": [
+        0.288,
+        0.441
+      ],
+      "n_seeds_positive": 10,
+      "setting": "unconstrained"
+    },
+    {
+      "learner": "MLP (16 tanh)",
+      "feasibility": true,
+      "priority": true,
+      "regret_two_stage": 0.342,
+      "regret_spo_plus": 0.085,
+      "reduction": 0.257,
+      "seed_clustered_95ci": [
+        0.198,
+        0.32
+      ],
+      "n_seeds_positive": 10,
+      "setting": "integrated (fair+feasible)"
+    }
+  ],
+  "two_stage_convergence": [
+    {
+      "epochs": 80,
+      "two_stage_regret": 0.858
+    },
+    {
+      "epochs": 700,
+      "two_stage_regret": 0.432
+    },
+    {
+      "epochs": 2000,
+      "two_stage_regret": 0.249
+    },
+    {
+      "epochs": 4000,
+      "two_stage_regret": 0.207
+    }
+  ],
+  "spo_plus_unconstrained_regret": 0.057
+}

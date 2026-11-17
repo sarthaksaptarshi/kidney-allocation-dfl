@@ -158,8 +158,8 @@ def main():
     X = np.column_stack(X)
     keep = np.isfinite(t) & (t > 0)
     X, t, e = X[keep], t[keep], e[keep]
-    X = SimpleImputer(strategy="median").fit_transform(X)
-    Xs = StandardScaler().fit_transform(X)
+    # Review C5: NO global preprocessing. X is kept raw (NaN allowed); the imputer and scaler
+    # are fit INSIDE each fold on training patients only, so no test information leaks.
     print(f"n={len(t)}  graft-loss events={int(e.sum())} ({e.mean()*100:.1f}%)  median follow-up={np.median(t):.1f} y")
 
     # 5-fold OUT-OF-FOLD risk scores (evaluate on the full cohort -> tighter CIs)
@@ -167,13 +167,16 @@ def main():
     grid = GRID; n = len(t)
     risk_prop = np.zeros(n); risk_cox = np.zeros(n); risk_naive = np.zeros(n)
     cum_full = np.zeros((n, len(grid)-1))
-    for tr, te in StratifiedKFold(5, shuffle=True, random_state=0).split(Xs, e):
-        cum = discrete_survival(Xs[tr], t[tr], e[tr], Xs[te], grid)
+    for tr, te in StratifiedKFold(5, shuffle=True, random_state=0).split(X, e):
+        imp = SimpleImputer(strategy="median").fit(X[tr])                      # fit on TRAIN only
+        sc = StandardScaler().fit(imp.transform(X[tr]))
+        Xtr = sc.transform(imp.transform(X[tr])); Xte = sc.transform(imp.transform(X[te]))
+        cum = discrete_survival(Xtr, t[tr], e[tr], Xte, grid)
         cum_full[te] = cum; risk_prop[te] = cum[:, -1]
-        beta = cox_fit(Xs[tr], t[tr], e[tr], l2=1.0); risk_cox[te] = cox_risk(Xs[te], beta)
+        beta = cox_fit(Xtr, t[tr], e[tr], l2=1.0); risk_cox[te] = cox_risk(Xte, beta)
         y5 = ((t[tr] <= 5.0) & (e[tr] == 1)).astype(int)
-        nb = GradientBoostingClassifier(n_estimators=150, max_depth=3, learning_rate=0.05, random_state=0).fit(Xs[tr], y5)
-        risk_naive[te] = nb.predict_proba(Xs[te])[:, 1]
+        nb = GradientBoostingClassifier(n_estimators=150, max_depth=3, learning_rate=0.05, random_state=0).fit(Xtr, y5)
+        risk_naive[te] = nb.predict_proba(Xte)[:, 1]
 
     models = {"Proposed (discrete-time survival)": risk_prop, "Cox PH": risk_cox, "Naive fixed-horizon": risk_naive}
     res = {}

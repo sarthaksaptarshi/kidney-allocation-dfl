@@ -4,10 +4,10 @@ Rebuild out/fig_survival.png as a TWO-COHORT real-data survival figure:
     Jakarta cohort (86 events) for death-censored graft loss --- Cox leads at 31 events, the two tie
     at 86, confirming the gap is driven by event count, not method.
 (b) Censoring-adjusted 5-year calibration on the larger (Jakarta) cohort.
-Mendeley numbers are the paper's reported values; Jakarta panel (b) is computed from jakarta_clean.csv
-with the same code path as star_pipeline.py.
+Panel (a) C-indices are read from the leak-free metrics JSONs (results_survival for Mendeley,
+results_star for Jakarta); panel (b) is computed from jakarta_clean.csv via the star_pipeline path.
 """
-import numpy as np, pandas as pd, os
+import numpy as np, pandas as pd, os, json
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
@@ -30,10 +30,11 @@ for c in cat:
     d = pd.get_dummies(df[c].astype(str).replace({"nan": np.nan}), prefix=c, dummy_na=False)
     for cc in d.columns: parts.append(d[cc].to_numpy(float))
 X = np.column_stack(parts); keep = np.isfinite(t) & (t > 0); X, t, e = X[keep], t[keep], e[keep]
-X = SimpleImputer(strategy="median").fit_transform(X); Xs = StandardScaler().fit_transform(X)
 grid = [0, 1, 5, 10]; n = len(t); cum = np.zeros((n, len(grid)-1))
-for tr, te in StratifiedKFold(5, shuffle=True, random_state=0).split(Xs, e):
-    cum[te] = discrete_survival(Xs[tr], t[tr], e[tr], Xs[te], grid)
+for tr, te in StratifiedKFold(5, shuffle=True, random_state=0).split(X, e):   # review C5: fit preprocessing inside each fold
+    imp = SimpleImputer(strategy="median").fit(X[tr]); sc = StandardScaler().fit(imp.transform(X[tr]))
+    Xtr = sc.transform(imp.transform(X[tr])); Xte = sc.transform(imp.transform(X[te]))
+    cum[te] = discrete_survival(Xtr, t[tr], e[tr], Xte, grid)
 risk5 = cum[:, 1]                                  # cumulative incidence at the 5-year cut
 tert = np.quantile(risk5, [1/3, 2/3]); grp = np.digitize(risk5, tert)
 obs, pred = [], []
@@ -43,10 +44,15 @@ for g in range(3):
 
 fig, (axA, axB) = plt.subplots(1, 2, figsize=(9.2, 3.6))
 
-# ---- panel (a): two-cohort C-index, proposed vs Cox ----
+# ---- panel (a): two-cohort C-index, proposed vs Cox (read from metrics JSONs; no hard-coding) ----
+_mend = json.load(open(os.path.join(HERE, "results_survival", "metrics_survival.json")))   # Mendeley, leak-free
+_jak  = json.load(open(os.path.join(HERE, "results_star", "metrics_star.json")))            # Jakarta,  leak-free
+def _cc(d, key): return d[key]["c_index"], tuple(d[key]["c_ci"])
+mp, mpc = _cc(_mend, "Proposed (discrete-time survival)"); mc, mcc = _cc(_mend, "Cox PH")
+jp, jpc = _cc(_jak,  "Proposed (discrete-time survival)"); jc, jcc = _cc(_jak,  "Cox PH")
 cohorts = ["Mendeley\n(31 events)", "Jakarta\n(86 events)"]
-prop = [0.622, 0.557]; prop_ci = [(0.52, 0.72), (0.484, 0.622)]
-cox = [0.736, 0.541]; cox_ci = [(0.64, 0.82), (0.471, 0.603)]
+prop = [mp, jp]; prop_ci = [mpc, jpc]
+cox  = [mc, jc]; cox_ci  = [mcc, jcc]
 x = np.arange(2); w = 0.36
 eP = [[prop[i]-prop_ci[i][0] for i in range(2)], [prop_ci[i][1]-prop[i] for i in range(2)]]
 eC = [[cox[i]-cox_ci[i][0] for i in range(2)], [cox_ci[i][1]-cox[i] for i in range(2)]]

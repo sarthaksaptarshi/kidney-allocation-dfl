@@ -1,0 +1,14 @@
+{
+  "lam": 0.12,
+  "seeds": 10,
+  "test_batches_per_seed": 24,
+  "regret_two_stage": 1.482,
+  "regret_spo_plus": 1.476,
+  "paired_reduction": 0.006,
+  "seed_clustered_95ci": [
+    -0.08,
+    0.089
+  ],
+  "n_seeds_positive": 7,
+  "objective": "fair + feasibility-constrained (priority s_i and ABO/crossmatch in BOTH training and evaluation)"
+}

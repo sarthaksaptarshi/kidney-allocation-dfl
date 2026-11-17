@@ -1,0 +1,82 @@
+{
+  "cells": [
+    {
+      "feasibility": false,
+      "priority": false,
+      "lam": 0.0,
+      "reduction": 0.106,
+      "seed_clustered_95ci": [
+        0.029,
+        0.181
+      ],
+      "n_seeds_positive": 9
+    },
+    {
+      "feasibility": false,
+      "priority": true,
+      "lam": 0.12,
+      "reduction": 0.046,
+      "seed_clustered_95ci": [
+        -0.03,
+        0.114
+      ],
+      "n_seeds_positive": 7
+    },
+    {
+      "feasibility": true,
+      "priority": false,
+      "lam": 0.0,
+      "reduction": 0.053,
+      "seed_clustered_95ci": [
+        -0.054,
+        0.156
+      ],
+      "n_seeds_positive": 6
+    },
+    {
+      "feasibility": true,
+      "priority": true,
+      "lam": 0.12,
+      "reduction": 0.037,
+      "seed_clustered_95ci": [
+        -0.03,
+        0.102
+      ],
+      "n_seeds_positive": 8
+    }
+  ],
+  "contrasts": [
+    {
+      "contrast": "priority only - neither",
+      "estimate": -0.06,
+      "ci95": [
+        -0.179,
+        0.051
+      ]
+    },
+    {
+      "contrast": "feasibility only - neither",
+      "estimate": -0.053,
+      "ci95": [
+        -0.164,
+        0.058
+      ]
+    },
+    {
+      "contrast": "both - neither",
+      "estimate": -0.069,
+      "ci95": [
+        -0.172,
+        0.033
+      ]
+    },
+    {
+      "contrast": "feasibility x priority interaction",
+      "estimate": 0.045,
+      "ci95": [
+        -0.067,
+        0.163
+      ]
+    }
+  ]
+}

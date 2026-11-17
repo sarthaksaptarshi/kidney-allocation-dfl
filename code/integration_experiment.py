@@ -61,7 +61,7 @@ def design(feats): nD, nR, p = feats.shape; return feats.reshape(-1, p), (nD, nR
 
 def fit_two_stage(pools, rng_obs, lam=1.0):
     X = np.vstack([design(p["feats"])[0] for p in pools])
-    y = np.concatenate([(p["B"] + rng_obs.normal(0, 0.08, p["B"].shape)).reshape(-1) for p in pools])
+    y = np.concatenate([p["B"].reshape(-1) for p in pools])   # MATCHED LABELS (review C2): same clean benefit for both methods
     A = X.T @ X + lam * np.eye(X.shape[1]); return np.linalg.solve(A, X.T @ y)
 
 def spo_plus_train(pools, theta0, LAM, epochs=60, lr=0.004):

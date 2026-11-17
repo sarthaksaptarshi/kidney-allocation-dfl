@@ -76,7 +76,7 @@ def rich_feats(feats):
 # ----- two-stage: ridge regression of observed benefit on base features -----
 def fit_two_stage(pools, lam=1.0):
     X = np.vstack([design(f)[0] for f, _ in pools])
-    y = np.concatenate([ (B + rng_obs.normal(0, 0.08, B.shape)).reshape(-1) for _, B in pools])
+    y = np.concatenate([ B.reshape(-1) for _, B in pools])   # MATCHED LABELS (review C2): both methods see the same clean benefit
     A = X.T @ X + lam*np.eye(X.shape[1]); theta = np.linalg.solve(A, X.T @ y)
     return theta
 

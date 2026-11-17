@@ -3,12 +3,12 @@
     "lam": 0.0,
     "seeds": 10,
     "test_batches_per_seed": 24,
-    "regret_two_stage": 1.507,
-    "regret_spo_plus": 1.478,
-    "paired_reduction": 0.029,
+    "regret_two_stage": 1.543,
+    "regret_spo_plus": 1.49,
+    "paired_reduction": 0.053,
     "seed_clustered_95ci": [
-      -0.058,
-      0.115
+      -0.054,
+      0.156
     ],
     "n_seeds_positive": 6
   },
@@ -16,65 +16,65 @@
     "lam": 0.03,
     "seeds": 10,
     "test_batches_per_seed": 24,
-    "regret_two_stage": 1.49,
-    "regret_spo_plus": 1.46,
-    "paired_reduction": 0.03,
+    "regret_two_stage": 1.532,
+    "regret_spo_plus": 1.474,
+    "paired_reduction": 0.058,
     "seed_clustered_95ci": [
-      -0.051,
-      0.107
+      -0.02,
+      0.134
     ],
-    "n_seeds_positive": 7
+    "n_seeds_positive": 8
   },
   {
     "lam": 0.06,
     "seeds": 10,
     "test_batches_per_seed": 24,
-    "regret_two_stage": 1.515,
-    "regret_spo_plus": 1.503,
-    "paired_reduction": 0.012,
+    "regret_two_stage": 1.495,
+    "regret_spo_plus": 1.479,
+    "paired_reduction": 0.016,
     "seed_clustered_95ci": [
-      -0.072,
-      0.092
+      -0.06,
+      0.089
     ],
-    "n_seeds_positive": 5
+    "n_seeds_positive": 7
   },
   {
     "lam": 0.12,
     "seeds": 10,
     "test_batches_per_seed": 24,
-    "regret_two_stage": 1.473,
-    "regret_spo_plus": 1.495,
-    "paired_reduction": -0.022,
+    "regret_two_stage": 1.483,
+    "regret_spo_plus": 1.445,
+    "paired_reduction": 0.037,
     "seed_clustered_95ci": [
-      -0.089,
-      0.039
+      -0.03,
+      0.102
     ],
-    "n_seeds_positive": 3
+    "n_seeds_positive": 8
   },
   {
     "lam": 0.25,
     "seeds": 10,
     "test_batches_per_seed": 24,
-    "regret_two_stage": 1.502,
-    "regret_spo_plus": 1.511,
-    "paired_reduction": -0.009,
+    "regret_two_stage": 1.476,
+    "regret_spo_plus": 1.462,
+    "paired_reduction": 0.014,
     "seed_clustered_95ci": [
-      -0.078,
-      0.064
+      -0.069,
+      0.096
     ],
-    "n_seeds_positive": 2
+    "n_seeds_positive": 5
   },
   {
     "lam": 0.5,
     "seeds": 10,
     "test_batches_per_seed": 24,
-    "regret_two_stage": 1.564,
-    "regret_spo_plus": 1.527,
-    "paired_reduction": 0.036,
+    "regret_two_stage": 1.603,
+    "regret_spo_plus": 1.499,
+    "paired_reduction": 0.104,
     "seed_clustered_95ci": [
-      -0.036,
-      0.108
+      0.029,
+      0.183
     ],
-    "n_seeds_positive": 6
+    "n_seeds_positive": 10
   }
 ]

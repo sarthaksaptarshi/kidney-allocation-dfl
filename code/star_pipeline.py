@@ -146,22 +146,23 @@ def main():
     X = np.column_stack(X)
     keep = np.isfinite(t) & (t > 0)
     X, t, e = X[keep], t[keep], e[keep]
-    X = SimpleImputer(strategy="median").fit_transform(X)
-    Xs = StandardScaler().fit_transform(X)
-    grid = list(args.grid)
+    grid = list(args.grid)   # review C5: preprocessing (impute + scale) is now fit INSIDE each fold below, not on all data
     print(f"n={len(t)}  events={int(e.sum())} ({e.mean()*100:.1f}%)  median follow-up={np.median(t):.1f} y  "
           f"predictors={X.shape[1]}  C-index pairs/boot={args.pairs}")
 
     n = len(t); risk_prop = np.zeros(n); risk_cox = np.zeros(n); risk_naive = np.zeros(n)
     cum_full = np.zeros((n, len(grid)-1))
     ch = grid[len(grid)//2] if len(grid) > 2 else grid[-1]      # a middle horizon for the naive classifier
-    for tr, te in StratifiedKFold(args.folds, shuffle=True, random_state=0).split(Xs, e):
-        cum_full[te] = discrete_survival(Xs[tr], t[tr], e[tr], Xs[te], grid)
+    for tr, te in StratifiedKFold(args.folds, shuffle=True, random_state=0).split(X, e):
+        imp = SimpleImputer(strategy="median").fit(X[tr])            # review C5: fit on TRAIN rows only, then apply to test
+        sc = StandardScaler().fit(imp.transform(X[tr]))
+        Xtr = sc.transform(imp.transform(X[tr])); Xte = sc.transform(imp.transform(X[te]))
+        cum_full[te] = discrete_survival(Xtr, t[tr], e[tr], Xte, grid)
         risk_prop[te] = cum_full[te][:, -1]
-        risk_cox[te] = cox_risk(Xs[te], cox_fit(Xs[tr], t[tr], e[tr], l2=1.0))
+        risk_cox[te] = cox_risk(Xte, cox_fit(Xtr, t[tr], e[tr], l2=1.0))
         yk = ((t[tr] <= ch) & (e[tr] == 1)).astype(int)
-        nb = GradientBoostingClassifier(n_estimators=150, max_depth=3, learning_rate=0.05, random_state=0).fit(Xs[tr], yk)
-        risk_naive[te] = nb.predict_proba(Xs[te])[:, 1]
+        nb = GradientBoostingClassifier(n_estimators=150, max_depth=3, learning_rate=0.05, random_state=0).fit(Xtr, yk)
+        risk_naive[te] = nb.predict_proba(Xte)[:, 1]
 
     res = {"endpoint_time": args.time, "endpoint_event": args.event, "n": int(n),
            "events": int(e.sum()), "event_rate": round(float(e.mean()), 4),

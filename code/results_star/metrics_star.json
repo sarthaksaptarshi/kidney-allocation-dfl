@@ -1,0 +1,49 @@
+{
+  "endpoint_time": "PT_DC_y",
+  "endpoint_event": "DC_Graft",
+  "n": 754,
+  "events": 86,
+  "event_rate": 0.1141,
+  "c_index_pairs_per_boot": 500000,
+  "grid": [
+    0.0,
+    1.0,
+    5.0,
+    10.0
+  ],
+  "Proposed (discrete-time survival)": {
+    "c_index": 0.557,
+    "c_ci": [
+      0.49,
+      0.609
+    ]
+  },
+  "Cox PH": {
+    "c_index": 0.541,
+    "c_ci": [
+      0.477,
+      0.595
+    ]
+  },
+  "Naive fixed-horizon": {
+    "c_index": 0.561,
+    "c_ci": [
+      0.5,
+      0.621
+    ]
+  },
+  "proposed_minus_cox_paired": {
+    "mean": 0.0144,
+    "ci": [
+      -0.0304,
+      0.0615
+    ],
+    "prob_A_better": 0.737
+  },
+  "win_verdict": "tie (CI includes 0)",
+  "Proposed_td_AUROC": {
+    "1.0y": 0.578,
+    "5.0y": 0.553,
+    "10.0y": null
+  }
+}

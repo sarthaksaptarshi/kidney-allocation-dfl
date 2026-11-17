@@ -1,0 +1,32 @@
+{
+  "Proposed (discrete-time survival)": {
+    "c_index": 0.618,
+    "c_ci": [
+      0.512,
+      0.719
+    ]
+  },
+  "Cox PH": {
+    "c_index": 0.735,
+    "c_ci": [
+      0.636,
+      0.816
+    ]
+  },
+  "Naive fixed-horizon": {
+    "c_index": 0.599,
+    "c_ci": [
+      0.503,
+      0.695
+    ]
+  },
+  "Proposed_td_AUROC": {
+    "1y": 0.487,
+    "5y": 0.589,
+    "10y": null
+  },
+  "endpoint": "death-censored graft loss (death with function censored at death)",
+  "n": 434,
+  "events": 31,
+  "event_rate": 0.0714
+}

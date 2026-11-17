@@ -1,0 +1,28 @@
+[
+  {
+    "feasibility": false,
+    "priority": false,
+    "regret_two_stage_survival": 1.945,
+    "regret_end_to_end": 1.841,
+    "reduction_e2e_minus_twostage": 0.104,
+    "seed_clustered_95ci": [
+      0.027,
+      0.181
+    ],
+    "n_seeds_e2e_better": 9,
+    "setting": "unconstrained"
+  },
+  {
+    "feasibility": true,
+    "priority": true,
+    "regret_two_stage_survival": 1.512,
+    "regret_end_to_end": 1.503,
+    "reduction_e2e_minus_twostage": 0.01,
+    "seed_clustered_95ci": [
+      -0.084,
+      0.109
+    ],
+    "n_seeds_e2e_better": 5,
+    "setting": "integrated (fair+feasible)"
+  }
+]

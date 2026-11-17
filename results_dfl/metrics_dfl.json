@@ -1,0 +1,37 @@
+{
+  "seeds": 10,
+  "test_batches_per_seed": 24,
+  "bootstrap_unit": "held-out donor batch; seeds as clusters",
+  "regret_two_stage_mean": 1.935,
+  "regret_two_stage_sd": 0.489,
+  "regret_spo_plus_mean": 1.841,
+  "regret_spo_plus_sd": 0.491,
+  "paired_regret_reduction_mean": 0.094,
+  "naive_perbatch_95ci": [
+    0.036,
+    0.15
+  ],
+  "seed_clustered_95ci": [
+    0.013,
+    0.168
+  ],
+  "seed_mean_reduction_mean": 0.094,
+  "seed_mean_reduction_sd": 0.09,
+  "n_seeds_positive": 9,
+  "mse_two_stage": 0.0045,
+  "mse_spo_plus": 0.0066,
+  "misspecification_check": {
+    "base_feature_map": "constant, |HLA mismatch|/6, cPRA, donor age, recipient age, dialysis vintage (6 terms)",
+    "rich_feature_map": "base + (HLA/6)^2, (HLA/6)*1[cPRA>80], (HLA/6)*cPRA, exp(-vintage/4) (10 terms; the target's own nonlinear structure)",
+    "base_regret_two": 1.935,
+    "base_regret_spo": 1.841,
+    "base_reduction": 0.094,
+    "rich_regret_two": 1.357,
+    "rich_regret_spo": 1.338,
+    "rich_reduction": 0.019,
+    "rich_seed_clustered_95ci": [
+      -0.045,
+      0.086
+    ]
+  }
+}
